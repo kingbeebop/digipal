@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from ..models import Pet
 from ..serializers import PetSerializer
+import random
 
 
 @api_view(['GET', 'POST'])
@@ -79,7 +80,7 @@ def feed_pet(request):
     except Pet.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    new_hunger = pet.hunger + 10
+    new_hunger = pet.hunger - random.randint(5,30)
     pet.hunger = new_hunger
     pet.save()
 
@@ -96,6 +97,36 @@ def play_pet(request):
 
     new_energy = pet.energy - 10
     pet.energy = new_energy
+    pet.save()
+
+    serializer = PetSerializer(pet)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def sleep_pet(request):
+    try:
+        user = request.user
+        pet = Pet.objects.get(user=user)
+    except Pet.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    new_status = "sleeping"
+    pet.state = new_status
+    pet.save()
+
+    serializer = PetSerializer(pet)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def wake_pet(request):
+    try:
+        user = request.user
+        pet = Pet.objects.get(user=user)
+    except Pet.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    new_state = "Awake"
+    pet.state = new_state
     pet.save()
 
     serializer = PetSerializer(pet)

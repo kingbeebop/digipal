@@ -7,5 +7,8 @@ __all__ = [
     "RegisterView",
     "feed_pet",
     "my_pet",
-    "play_pet"
+    "play_pet",
+    "wake_pet",
+    "sleep_pet",
+
 ]

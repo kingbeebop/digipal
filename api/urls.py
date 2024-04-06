@@ -30,6 +30,8 @@ urlpatterns = [
     path("my/pet/feed", feed_pet),
     path("my/pet", my_pet),
     path("my/pet/play", play_pet),
+    path("my/pet/sleep", sleep_pet),
+    path("my/pet/wake", wake_pet),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
