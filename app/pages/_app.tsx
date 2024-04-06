@@ -2,7 +2,7 @@
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 // import store from '../redux/store';
-// import Layout from '../components/Layout';
+import Layout from '../components/layout';
 // import ErrorBoundary from '../components/ErrorBoundary';
 import 'tailwindcss/tailwind.css';
 
@@ -12,11 +12,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <Provider store={store}>
-      {/* <ErrorBoundary fallback={<p>We&apos;re currently experiencing a problem with our servers.</p>}>
-        <Layout> */}
+      {/* <ErrorBoundary fallback={<p>We&apos;re currently experiencing a problem with our servers.</p>}> */}
+        <Layout>
           <Component {...pageProps} />
-        {/* </Layout>
-      </ErrorBoundary> */}
+        </Layout>
+      {/* </ErrorBoundary> */}
     </Provider>
   );
 };
