@@ -5,4 +5,7 @@ __all__ = [
     "pets_list",
     "pet_detail",
     "RegisterView",
+    "feed_pet",
+    "my_pet",
+    "play_pet"
 ]
