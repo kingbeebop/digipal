@@ -3,5 +3,6 @@ from .auth_views import *
 
 __all__ = [
     "pets_list",
-    "pet_details"
+    "pet_detail",
+    "RegisterView",
 ]
