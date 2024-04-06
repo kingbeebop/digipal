@@ -15,9 +15,9 @@ PET_TYPES = (
 
 # Designed function to store saved arguments into Object with Error Check
 def _pet_type(*args, **kwargs):
-    if self.pet_type not in [x[0] for x in self.PET_TYPES]:
+    if pet_type not in [x[0] for x in PET_TYPES]:
         raise ValueError('Invalid pet type')
-    super(Pet, self).save(*args, **kwargs)
+    super(Pet, ).save(*args, **kwargs)
 
 
 #Tupular array with stored State Types
