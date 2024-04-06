@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'api.wsgi.application'
 
 db_user_password = os.getenv('DB_PASSWORD')
 
-# Change these fields for your own local server, dont push your own configs
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
