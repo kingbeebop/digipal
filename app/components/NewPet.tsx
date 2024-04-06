@@ -1,28 +1,43 @@
 import React from "react";
+import { useState } from "react";
 
 const NewPet: React.FC = () => {
     
+    const [ newPetName, setNewPetName ] = useState("");
+    const [ newPetSpecies, setNewPetSpecies ] = useState("");
+    const [ newPetObj, setNewPetObj] = useState({});
+
+    function onFormSubmit() {
+
+        const newPet = {
+            name: newPetName,
+            species: newPetSpecies,
+        }
+        setNewPetObj(newPet);
+    }
+    
     return (
         <div>
-            <form>
+            <form id='new-pet-form'>
                 <fieldset>
-                    <label for='new-pet-name-input' />
-                    <input id='new-pet-name-input' placeholder='Pet name'></input>
+                    <label htmlFor='new-pet-name-input'>Enter new pet name:</label>
+                    <input id='new-pet-name-input' placeholder='Pet name' onChange={(e) => setNewPetName(e.target.value)}></input>
                 </fieldset>
+                <fieldset>
+                    <label htmlFor='new-pet-species-select'>
+                        Select pet species:
+                    </label>
+                    <select id='new-pet-species-select' value='' onChange={(e) => setNewPetSpecies(e.target.value)}>
+                        <option>---</option>
+                        <option value='cat'>Cat</option>
+                        <option value='dog'>Dog</option>
+                    </select>
+                </fieldset>
+                <button type='submit'>Submit</button>
             </form>
-            <h1>Digipal</h1>
-            {/* Render pet sprites: */}
-            <div id='digipal-render'>
-                <div id='pet-container'></div>
-            </div>
-            <div id='actions'></div>
-            <button className="actions action-greet" id='action-greet'>Greet pal</button> 
-            <button className="actions action-feed" id='action-feed'>Feed pal</button> 
-            {/* You can use your Button component here */}
         </div>
     );
   
 };
 
-
-export default Pet;
+export default NewPet;
