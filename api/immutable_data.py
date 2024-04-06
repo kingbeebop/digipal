@@ -1,4 +1,4 @@
-from pathlib import Path
+"""from pathlib import Path
 import os
 from models import Pet
 
@@ -32,4 +32,4 @@ STATE_TYPES = (
 def save_state_type(self, *args, **kwargs):
     if self.state not in [x[0] for x in self.STATE_TYPES]:
         raise ValueError('Invalid State Type.')
-    super(Pet, self).save(*args, **kwargs)
+    super(Pet, self).save(*args, **kwargs)"""
