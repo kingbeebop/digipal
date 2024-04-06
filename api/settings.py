@@ -87,11 +87,11 @@ db_user_password = os.getenv('DB_PASSWORD')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'digipaldb',
-        'USER': 'owen',
-        'PASSWORD': db_user_password,
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
         'HOST': 'localhost',
-        'PORT': '5455',
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
