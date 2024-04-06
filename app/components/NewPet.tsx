@@ -1,9 +1,15 @@
 import React from "react";
 
-const Pet: React.FC = () => {
+const NewPet: React.FC = () => {
     
     return (
         <div>
+            <form>
+                <fieldset>
+                    <label for='new-pet-name-input' />
+                    <input id='new-pet-name-input' placeholder='Pet name'></input>
+                </fieldset>
+            </form>
             <h1>Digipal</h1>
             {/* Render pet sprites: */}
             <div id='digipal-render'>

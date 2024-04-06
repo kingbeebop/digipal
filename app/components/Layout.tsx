@@ -11,7 +11,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     <div className="layout"> 
       {/* Header or navigation could go here */}
       <header>
-        <h1>My Application</h1> 
+        <h1>Digipal</h1> 
         {/* Navigation links or other header content */}
       </header>
 
