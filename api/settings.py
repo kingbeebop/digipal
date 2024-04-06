@@ -83,15 +83,15 @@ WSGI_APPLICATION = 'api.wsgi.application'
 
 db_user_password = os.getenv('DB_PASSWORD')
 
-# Change these fields for your own local server, dont push your own configs
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
+        'NAME': 'digipalsDB',
         'USER': os.environ.get('DB_USER'),
         'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': os.environ.get('DB_PORT'),
+        'HOST': 'database.digipals.yira.me',
+        'PORT': 5432,
     }
 }
 
