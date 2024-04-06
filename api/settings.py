@@ -112,6 +112,26 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# JWT Settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),  # Example: Set access token expiration time
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),     # Example: Set refresh token expiration time
+    'ROTATE_REFRESH_TOKENS': True,
+}
+
+# Optional: Define blacklist models for token revocation
+# SIMPLE_JWT['ROTATE_REFRESH_TOKENS'] should be set to True for this to work
+from datetime import timedelta
+SIMPLE_JWT['USER_ID_FIELD'] = 'id'
+SIMPLE_JWT['BLACKLIST_AFTER_ROTATION'] = True
+SIMPLE_JWT['UPDATE_LAST_LOGIN'] = True
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
