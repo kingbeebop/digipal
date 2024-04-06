@@ -36,3 +36,13 @@ def pet_detail(request, id):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def my_pet(request):
+    if request.user:
+        user = request.user
+        pet = Pet.objects.get(user=user)
+        serializer = PetSerializer(pet)
+        if serializer.is_valid():
+            return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
