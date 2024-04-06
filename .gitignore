@@ -1,0 +1,35 @@
+# Next.js - Ignore build output
+app/.next/
+
+# Next.js - Ignore Node.js modules
+app/node_modules/
+
+# Next.js - Ignore environment files
+app/.env*
+
+# Next.js - Ignore any temporary files or folders
+app/.DS_Store
+app/*.log
+app/npm-debug.log*
+app/yarn-debug.log*
+app/yarn-error.log*
+app/.vscode/
+
+# Django - Ignore Python byte-compiled files
+__pycache__/
+*.py[cod]
+
+# Django - Ignore environment files
+.env*
+
+# Django - Ignore database
+db.sqlite3
+
+# Django - Ignore IDE settings
+.vscode/
+*.pydevproject
+.idea/
+*.egg-info/
+*.egg/
+dist/
+build/
