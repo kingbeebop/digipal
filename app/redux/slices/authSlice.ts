@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { loginRequest, logoutRequest, checkTokenValidity, fetchUserData, getRefreshToken, refreshToken } from '../../utils/auth';
+import { loginRequest, logoutRequest, getRefreshToken, refreshToken } from '../../utils/auth';
 import { RootState } from '../store';
 
 export interface AuthState {
@@ -14,64 +14,64 @@ const initialState: AuthState = {
   error: null,
 };
 
-export const checkAuthStatus = createAsyncThunk('auth/checkAuthStatus', async (_, { getState, dispatch, rejectWithValue }) => {
-  try {
-    const state = getState() as RootState;
-    const { user } = state.auth;
+// export const checkAuthStatus = createAsyncThunk('auth/checkAuthStatus', async (_, { getState, dispatch, rejectWithValue }) => {
+//   try {
+//     const state = getState() as RootState;
+//     const { user } = state.auth;
 
-    if (!user) {
-      const isValidToken = await checkTokenValidity();
+//     if (!user) {
+//       const isValidToken = await checkTokenValidity();
 
-      if (isValidToken) {
-        const userData = await fetchUserData();
-        console.log(userData);
-        dispatch(authActions.updateUserData(userData));
-        return userData;
-      } else {
-        // Attempt token refresh if refreshToken is available
-        const refreshTokenValue = getRefreshToken();
-        if (refreshTokenValue) {
-          try {
-            console.log("HELLA")
-            console.log(refreshTokenValue)
-            const response = await refreshToken(refreshTokenValue);
-            console.log("response: ", response)
-            // Update tokens in local storage
-            if (response.access) {
-              localStorage.setItem('accessToken', response.access);
-              localStorage.setItem('refreshToken', response.refresh);
-              // Retry fetching user data after token refresh
-              const userData = await fetchUserData();
-              console.log(userData);
-              dispatch(authActions.updateUserData(userData));
-              return userData;
-            }
-            else{
-              throw new Error('No token received');
-            }
-          } catch (refreshError: any) {
-            console.error('Token refresh error:', refreshError.message);
-            throw new Error('Error refreshing token');
-          }
-        } else {
-          throw new Error('No refresh token available');
-        }
-      }
-    }
+//       if (isValidToken) {
+//         const userData = await fetchUserData();
+//         console.log(userData);
+//         dispatch(authActions.updateUserData(userData));
+//         return userData;
+//       } else {
+//         // Attempt token refresh if refreshToken is available
+//         const refreshTokenValue = getRefreshToken();
+//         if (refreshTokenValue) {
+//           try {
+//             console.log("HELLA")
+//             console.log(refreshTokenValue)
+//             const response = await refreshToken(refreshTokenValue);
+//             console.log("response: ", response)
+//             // Update tokens in local storage
+//             if (response.access) {
+//               localStorage.setItem('accessToken', response.access);
+//               localStorage.setItem('refreshToken', response.refresh);
+//               // Retry fetching user data after token refresh
+//               const userData = await fetchUserData();
+//               console.log(userData);
+//               dispatch(authActions.updateUserData(userData));
+//               return userData;
+//             }
+//             else{
+//               throw new Error('No token received');
+//             }
+//           } catch (refreshError: any) {
+//             console.error('Token refresh error:', refreshError.message);
+//             throw new Error('Error refreshing token');
+//           }
+//         } else {
+//           throw new Error('No refresh token available');
+//         }
+//       }
+//     }
 
-    return user;
-  } catch (error: unknown) {
-    console.error('Error checking authentication status:', error);
-    return rejectWithValue('Error checking authentication status');
-  }
-});
+//     return user;
+//   } catch (error: unknown) {
+//     console.error('Error checking authentication status:', error);
+//     return rejectWithValue('Error checking authentication status');
+//   }
+// });
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
-  async (loginData: LoginData) => {
+  async (loginData: {username: string, password: string}) => {
     try {
       const data = await loginRequest(loginData);
-      return data.user;
+      return {username: loginData.username};
     } catch (error: unknown) {
       if (typeof error === 'string') {
         throw new Error(error || 'Login failed');
