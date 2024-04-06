@@ -75,13 +75,13 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
-# THIS IS NOT THE ACTUAL MODEL
+# THIS IS NOT THE ACTUAL DATABASE
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'digipalDB',
-        'USER': 'root',
-        'PASSWORD': 'brooklyn',
+        'NAME': 'ENTER NAME HERE',
+        'USER': 'ENTER USERNAME HERE',
+        'PASSWORD': 'ENTER THE PASSWORD (ENVIRONMENT VARIABLE)',
         'HOST': 'localhost',
         'PORT': '5432',
     }
