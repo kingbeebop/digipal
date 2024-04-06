@@ -22,6 +22,9 @@ __pycache__/
 # Django - Ignore environment files
 .env*
 
+#
+venv/
+
 # Django - Ignore database
 db.sqlite3
 
