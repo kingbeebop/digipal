@@ -68,7 +68,7 @@ export const checkAuthStatus = createAsyncThunk('auth/checkAuthStatus', async (_
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
-  async (loginData: {username: string, password: string}) => {
+  async (loginData: LoginData) => {
     try {
       const data = await loginRequest(loginData);
       return data.user;
